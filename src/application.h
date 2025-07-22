@@ -34,7 +34,7 @@ namespace vulkr {
     private:
         void loadGameObjects();
 
-        VulkrWindow vulkrWindow{WIDTH, HEIGHT, "First App"};
+        VulkrWindow vulkrWindow{WIDTH, HEIGHT, "Vulkan 3D Rendering Engine"};
         VulkrDevice vulkrDevice{vulkrWindow};
         VulkrRenderer vulkrRenderer{vulkrWindow, vulkrDevice};
 

@@ -9,6 +9,7 @@ namespace vulkr {
     struct SimplePushConstantData {
         glm::mat4 transform{1.0f}; // Identity matrix (no transformation)
         glm::mat4 normalMatrix{1.0f};
+        int enableLighting{1}; // 1 to enable lighting, 0 to disable
     };
 
     SimpleRenderSystem::SimpleRenderSystem(VulkrDevice &device, VkRenderPass renderPass)
@@ -57,13 +58,14 @@ namespace vulkr {
                                                const Camera &camera) {
         vulkrPipeline->bind(commandBuffer);
 
-        auto projectionView = camera.getProjectionMatrix() * camera.getView();
+        const auto projectionView = camera.getProjectionMatrix() * camera.getView();
 
         for (auto &obj: gameObjects) {
             SimplePushConstantData push{};
             auto modelMatrix = obj.transform.mat4();
             push.transform = projectionView * modelMatrix;
             push.normalMatrix = obj.transform.normalMatrix();
+            push.enableLighting = obj.enableLighting ? 1 : 0;
 
             vkCmdPushConstants(
                 commandBuffer,

@@ -48,6 +48,7 @@ namespace vulkr {
         std::shared_ptr<VulkrModel> model{};
         glm::vec3 color{};
         TransformComponent transform{};
+        bool enableLighting{true};
 
     private:
         explicit GameObject(id_t objId) : id(objId) {

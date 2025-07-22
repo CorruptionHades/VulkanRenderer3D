@@ -98,8 +98,17 @@ namespace vulkr {
         obj.model = vulkrModel;
         obj.transform.translation = {0, 0, 2.5f};
         obj.transform.scale = {.2f, .2f, .2f};
-        obj.transform.rotation = {0, 0, glm::radians(180.0f)};
 
         gameObjects.push_back(std::move(obj));
+
+        std::shared_ptr<VulkrModel> c_cube = MeshLoader::loadObjModel(vulkrDevice, "models/colored_cube.obj");
+
+        auto cube = GameObject::createGameObject();
+        cube.enableLighting = false;
+        cube.model = c_cube;
+        cube.transform.translation = {2, 0, 2.5f};
+        cube.transform.scale = {.3f, .3f, .3f};
+
+        gameObjects.push_back(std::move(cube));
     }
 }
