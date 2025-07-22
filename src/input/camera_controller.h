@@ -4,6 +4,7 @@
 
 #include <GLFW/glfw3.h>
 
+#include "../game/camera.h"
 #include "../game/game_object.h"
 
 namespace vulkr {
