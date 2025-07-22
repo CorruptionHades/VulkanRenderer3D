@@ -92,7 +92,7 @@ namespace vulkr {
     }
 
     void Application::loadGameObjects() {
-        std::shared_ptr<VulkrModel> vulkrModel = MeshLoader::loadObjModel(vulkrDevice, "models/FinalBaseMesh.obj");
+        std::shared_ptr<VulkrModel> vulkrModel = MeshLoader::loadObjModel(vulkrDevice, "models/smooth_vase.obj");
 
         auto obj = GameObject::createGameObject();
         obj.model = vulkrModel;
@@ -101,15 +101,5 @@ namespace vulkr {
         obj.transform.rotation = {0, 0, glm::radians(180.0f)};
 
         gameObjects.push_back(std::move(obj));
-
-        std::shared_ptr<VulkrModel> model = MeshLoader::loadObjModel(vulkrDevice, "models/bikini/combined.obj");
-
-        auto ob = GameObject::createGameObject();
-        ob.model = model;
-        ob.transform.translation = {0, 0, -2.5f};
-        ob.transform.scale = {.2f, .2f, .2f};
-        ob.transform.rotation = {glm::radians(90.0f), 0, 0};
-
-        gameObjects.push_back(std::move(ob));
     }
 }
